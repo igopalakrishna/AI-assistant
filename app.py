@@ -339,4 +339,4 @@ with gr.Blocks() as ui:
     clear.click(lambda: ([{"role": "system", "content": system_message}], [{"role": "system", "content": system_message}]), 
                 inputs=None, outputs=chatbot, queue=False)
 
-ui.launch()
+ui.launch(inbrowser=True)
