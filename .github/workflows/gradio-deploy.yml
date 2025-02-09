@@ -1,4 +1,4 @@
-name: Deploy Gradio App
+=name: Deploy Gradio App
 
 on:
   push:
@@ -19,15 +19,19 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'  # Choose your Python version
+        python-version: '3.9'  # Adjust if needed
+
+    - name: Install ffmpeg (Required for pydub)
+      run: sudo apt-get install -y ffmpeg
 
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt  # Ensure dependencies are in this file
+        pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Run Gradio App
       env:
-        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # Fetch secret API key securely
       run: |
         export OPENAI_API_KEY=$OPENAI_API_KEY
-        python your_gradio_script.py  # Replace with your script name
+        python app.py  # Change this if your file is named differently
