@@ -1,4 +1,4 @@
-=name: Deploy Gradio App
+name: Deploy Gradio App  # No '=' sign needed
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'  # Adjust if needed
+        python-version: '3.9'  # Adjust this version as needed
 
     - name: Install ffmpeg (Required for pydub)
       run: sudo apt-get install -y ffmpeg
@@ -34,4 +34,4 @@ jobs:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # Fetch secret API key securely
       run: |
         export OPENAI_API_KEY=$OPENAI_API_KEY
-        python app.py  # Change this if your file is named differently
+        python app.py  # Change to the actual filename
